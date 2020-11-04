@@ -30,7 +30,7 @@ jobs:
 
       - name: build the image for arm64v8
         run: |
-          docker build -t "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":arm64v8-latest --build-arg ARCH=arm64v8/ -f Dockerfile . &&\
+          docker build -t "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":arm64v8-latest --build-arg ARCH=arm64v8/ src/ &&\
           docker push "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":arm64v8-latest
 
   building-arm32v7:
@@ -47,7 +47,7 @@ jobs:
 
       - name: build the image for arm32v7
         run: |
-          docker build -t "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":arm32v7-latest --build-arg ARCH=arm32v7/ -f Dockerfile . &&\
+          docker build -t "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":arm32v7-latest --build-arg ARCH=arm32v7/ src/ &&\
           docker push "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":arm32v7-latest
 
   building-amd64:
@@ -64,7 +64,7 @@ jobs:
           
       - name: build the image for amd64
         run: |
-          docker build -t "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":amd64-latest --build-arg ARCH=amd64/ -f Dockerfile . &&\
+          docker build -t "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":amd64-latest --build-arg ARCH=amd64/ src/ &&\
           docker push "${{ secrets.DOCKER_USERNAME }}"/"${{ secrets.DOCKER_REPOSITORY }}":amd64-latest
 
   manifest-create:
