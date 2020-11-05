@@ -44,7 +44,7 @@ version: '3.0'
 services:
   minecraft-server:
     container_name: minecraft-server
-    build: src
+    image: mayniki/minecraft
     volumes:
       - "./data:/app"
     ports:
