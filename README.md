@@ -23,7 +23,7 @@ Where:
 
 | Variable       | Description                                  | Default |
 |----------------|----------------------------------------------|---------|
-|`server.jar-url`| Insert a download link to the server.jar file | 'NULL' |
+|`serverurl`| Insert a download link to the server.jar file | 'NULL' |
 |`MC_RAM`| How much RAM is the java application allowed to use? | `2G` |
 |`UID`| ID of the user the application runs as.  See [User/Group IDs](#usergroup-ids) to better understand when this should be set. | `1000` |
 |`GID`| ID of the group the application runs as.  See [User/Group IDs](#usergroup-ids) to better understand when this should be set. | `1000` |
@@ -51,7 +51,7 @@ services:
       - "25565:25565"
     environment:
       - MC_RAM=2G
-      - server.jar-url=
+      - serverurl=
       - UID=1000 
       - GID=1000
     stdin_open: true

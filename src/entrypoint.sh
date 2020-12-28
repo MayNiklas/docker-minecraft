@@ -5,7 +5,7 @@ if [ "$(ls -A $DIR)" ]; then
      echo "$DIR is not Empty. Minecraft is allready installed"
 else
     echo "$DIR is Empty. Minecraft is going to get installed"
-    wget $server.jar-url
+    wget $serverurl
     java -jar server.jar
     sed -i 's/false/true/g' eula.txt 
 fi
