@@ -59,6 +59,29 @@ services:
     restart: unless-stopped
 ```
 
+### minecraft shell
+Sometimes you need to get access to the servers shell.
+```bash
+# stop the server
+docker-compose down
+
+# start the container with a modified entrypoint
+docker run -p 25565:25565 -v $(pwd)/app/:/app -it --entrypoint="bash" mayniki/minecraft
+
+# start minecraft under user java
+groupadd java -g 1000
+useradd -u 1000 -g 1000 java
+chown -R  java:java /app
+su java -c 'java -Xmx4G -jar server.jar'
+
+# after being done in the shell
+/stop
+exit
+
+# now restart the server normally
+docker-compose up -d
+```
+
 ## Backup
 I personally use the following skript to backup my server before I migrate it to another system.
 ```bash
