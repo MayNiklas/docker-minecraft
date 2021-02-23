@@ -108,3 +108,27 @@ zip -r backup/${now}-minecraft.zip app docker-compose.yml
 # Restart the minecraft server
 docker-compose up -d
 ```
+
+## Restoring backup
+The container is written in a way, permissions are being handled while starting.
+```bash
+#!/bin/bash
+
+cd ~/docker/minecraft/
+
+# stopping the minecraft server
+docker-compose down
+
+# it might be a good idea to create a backup first!
+now=`date +"%Y-%m-%d-%H-%M"`
+zip -r backup/${now}-minecraft.zip app docker-compose.yml
+
+# I suggest completly deleting the old app folder
+rm -rf app/
+
+# unzip your backup
+unzip backup/2021-02-24-00-22-minecraft.zip
+
+# Restart the minecraft server
+docker-compose up -d
+```
