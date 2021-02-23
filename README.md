@@ -59,3 +59,29 @@ services:
     restart: unless-stopped
 ```
 
+## Backup
+I personally use the following skript to backup my server before I migrate it to another system.
+```bash
+#!/bin/bash
+
+cd ~/docker/minecraft/
+
+# Pulling the new image for security reasons only
+docker-compose pull
+
+# Creating a variable containing the date
+now=`date +"%Y-%m-%d-%H-%M"`
+echo "${now}"
+
+# Creating a backup folder
+mkdir backup
+
+# Stopping the minecraft server
+docker-compose down
+
+# Creating a zip file
+zip -r backup/${now}-minecraft.zip app docker-compose.yml
+
+# Restart the minecraft server
+docker-compose up -d
+```
